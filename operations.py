@@ -99,3 +99,30 @@ def unlink_exercise_from_muscle(exercise_id, muscle_group_id):
 
 
 # workout set operations
+def add_workout_set(workout_id, exercise_id, set_number, weight, reps, rest_time):
+    query = "INSERT INTO workoutsets (workout_id, exercise_id, set_number, weight, reps, rest_time) VALUES (%s, %s, %s, %s, %s, %s)"
+    cursor.execute(query, (workout_id, exercise_id, set_number, weight, reps, rest_time))
+    connection.commit()
+    return cursor.lastrowid
+
+def get_workout_sets():
+    query = "SELECT * FROM workoutsets"
+    cursor.execute(query)
+    return cursor.fetchall()
+
+def get_workout_set_by_id(set_id):
+    query = "SELECT * FROM workoutsets WHERE set_id = %s"
+    cursor.execute(query, (set_id,))
+    return cursor.fetchone()
+
+def update_workout_set(set_id, workout_id, exercise_id, set_number, weight, reps, rest_time):
+    query = "UPDATE workoutsets SET workout_id = %s, exercise_id = %s, set_number = %s, weight = %s, reps = %s, rest_time = %s WHERE set_id = %s"
+    cursor.execute(query, (workout_id, exercise_id, set_number, weight, reps, rest_time, set_id))
+    connection.commit()
+    return cursor.rowcount
+
+def delete_workout_set(set_id):
+    query = "DELETE FROM workoutsets WHERE set_id = %s"
+    cursor.execute(query, (set_id,))
+    connection.commit()
+    return cursor.rowcount
