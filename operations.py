@@ -78,7 +78,7 @@ def link_exercise_to_muscle(exercise_id, muscle_group_id):
     query = "INSERT INTO exercisemuscles (exercise_id, muscle_group_id) VALUES (%s, %s)"
     cursor.execute(query, (exercise_id, muscle_group_id))
     connection.commit()
-    return cursor.lastrowid
+    return cursor.rowcount
 
 def get_muscles_for_exercise(exercise_id):
     query = "SELECT mg.muscle_group_name FROM musclegroups mg JOIN exercisemuscles em ON mg.muscle_group_id = em.muscle_group_id WHERE em.exercise_id = %s"
@@ -96,3 +96,6 @@ def unlink_exercise_from_muscle(exercise_id, muscle_group_id):
     connection.commit()
     return cursor.rowcount
 
+
+
+# workout set operations
