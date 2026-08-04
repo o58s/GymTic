@@ -1,5 +1,7 @@
 from db_connection import connection, cursor
 
+
+# Exercise CRUD operations
 def add_exercise(exercise_name, equipment, difficulty):
     query = "INSERT INTO exercises (exercise_name, equipment, difficulty) VALUES (%s, %s, %s)"
     cursor.execute(query, (exercise_name, equipment, difficulty))
@@ -30,6 +32,8 @@ def delete_exercise(exercise_id):
     connection.commit()
     return cursor.rowcount
 
+
+# User CRUD operations
 def add_user(age, height, weight, goal):
     query = "INSERT INTO users(age, height, weight, goal) VALUES (%s, %s, %s, %s)"
     cursor.execute(query, (age, height, weight, goal))
@@ -57,4 +61,15 @@ def delete_user(user_id):
     cursor.execute(query, (user_id,))
     connection.commit()
     return cursor.rowcount
+
+# Muscle Group operations
+def get_muscle_groups():
+    query = "SELECT * FROM musclegroups"
+    cursor.execute(query)
+    return cursor.fetchall()
+
+def get_muscle_group_by_id(muscle_group_id):
+    query = "SELECT * FROM musclegroups WHERE muscle_group_id = %s"
+    cursor.execute(query, (muscle_group_id,))
+    return cursor.fetchone()
 
