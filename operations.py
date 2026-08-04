@@ -29,3 +29,32 @@ def delete_exercise(exercise_id):
     cursor.execute(query, (exercise_id,))
     connection.commit()
     return cursor.rowcount
+
+def add_user(age, height, weight, goal):
+    query = "INSERT INTO users(age, height, weight, goal) VALUES (%s, %s, %s, %s)"
+    cursor.execute(query, (age, height, weight, goal))
+    connection.commit()
+    return cursor.lastrowid
+
+def get_users():
+    query = "SELECT * FROM users"
+    cursor.execute(query)
+    return cursor.fetchall()
+
+def get_user_by_id(user_id):
+    query = "SELECT * FROM users WHERE user_id = %s"
+    cursor.execute(query, (user_id,))
+    return cursor.fetchone()
+
+def update_user(user_id, age, height, weight, goal):
+    query = "UPDATE users SET age = %s, height = %s, weight = %s, goal = %s WHERE user_id = %s"
+    cursor.execute(query, (age, height, weight, goal, user_id))
+    connection.commit()
+    return cursor.rowcount
+
+def delete_user(user_id):
+    query = "DELETE FROM users WHERE user_id = %s"
+    cursor.execute(query, (user_id,))
+    connection.commit()
+    return cursor.rowcount
+
