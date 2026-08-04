@@ -73,3 +73,26 @@ def get_muscle_group_by_id(muscle_group_id):
     cursor.execute(query, (muscle_group_id,))
     return cursor.fetchone()
 
+#Exercise-Muscle operations
+def link_exercise_to_muscle(exercise_id, muscle_group_id):
+    query = "INSERT INTO exercisemuscles (exercise_id, muscle_group_id) VALUES (%s, %s)"
+    cursor.execute(query, (exercise_id, muscle_group_id))
+    connection.commit()
+    return cursor.lastrowid
+
+def get_muscles_for_exercise(exercise_id):
+    query = "SELECT mg.muscle_group_name FROM musclegroups mg JOIN exercisemuscles em ON mg.muscle_group_id = em.muscle_group_id WHERE em.exercise_id = %s"
+    cursor.execute(query, (exercise_id,))
+    return cursor.fetchall()
+
+def get_exercises_for_muscle(muscle_group_id):
+    query = "SELECT e.exercise_name FROM exercises e JOIN exercisemuscles em ON e.exercise_id = em.exercise_id WHERE em.muscle_group_id = %s"
+    cursor.execute(query, (muscle_group_id,))
+    return cursor.fetchall()
+
+def unlink_exercise_from_muscle(exercise_id, muscle_group_id):
+    query = "DELETE FROM exercisemuscles WHERE exercise_id = %s AND muscle_group_id = %s"
+    cursor.execute(query, (exercise_id, muscle_group_id))
+    connection.commit()
+    return cursor.rowcount
+
