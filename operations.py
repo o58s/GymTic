@@ -50,6 +50,21 @@ def get_user_by_id(user_id):
     cursor.execute(query, (user_id,))
     return cursor.fetchone()
 
+def get_user_by_username(username):
+    query = "SELECT * FROM users WHERE username = %s"
+    cursor.execute(query, (username,))
+    return cursor.fetchone()
+
+def check_login(username, password):
+    query = """
+    SELECT user_id, username, name 
+    FROM users 
+    WHERE username = %s AND password = %s
+    """
+
+    cursor.execute(query, (username, password))
+    return cursor.fetchone()
+
 def update_user(user_id, name, age, height, weight, goal):
     query = "UPDATE users SET name = %s, age = %s, height = %s, weight = %s, goal = %s WHERE user_id = %s"
     cursor.execute(query, (name, age, height, weight, goal, user_id))
