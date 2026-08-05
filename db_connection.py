@@ -18,7 +18,7 @@ try:
         cursor = connection.cursor()
         cursor.execute('SELECT VERSION();')
         db_version = cursor.fetchone()
-        print(f"MySQL Database Version: {db_version[0]}")
+        
 except Error as e:
     print(f"Error while connecting to MySQL: {e}")
 
