@@ -1,6 +1,7 @@
 use gymtic;
 CREATE TABLE Users(
 user_id INT AUTO_INCREMENT,
+name VARCHAR(100),
 age INT,
 height DECIMAL(5,2),
 weight DECIMAL(5,2),

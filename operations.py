@@ -34,9 +34,9 @@ def delete_exercise(exercise_id):
 
 
 # User Operations
-def add_user(age, height, weight, goal):
-    query = "INSERT INTO users(age, height, weight, goal) VALUES (%s, %s, %s, %s)"
-    cursor.execute(query, (age, height, weight, goal))
+def add_user(name, age, height, weight, goal):
+    query = "INSERT INTO users(name, age, height, weight, goal) VALUES (%s, %s, %s, %s, %s)"
+    cursor.execute(query, (name, age, height, weight, goal))
     connection.commit()
     return cursor.lastrowid
 
@@ -50,9 +50,9 @@ def get_user_by_id(user_id):
     cursor.execute(query, (user_id,))
     return cursor.fetchone()
 
-def update_user(user_id, age, height, weight, goal):
-    query = "UPDATE users SET age = %s, height = %s, weight = %s, goal = %s WHERE user_id = %s"
-    cursor.execute(query, (age, height, weight, goal, user_id))
+def update_user(user_id, name, age, height, weight, goal):
+    query = "UPDATE users SET name = %s, age = %s, height = %s, weight = %s, goal = %s WHERE user_id = %s"
+    cursor.execute(query, (name, age, height, weight, goal, user_id))
     connection.commit()
     return cursor.rowcount
 
