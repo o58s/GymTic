@@ -252,6 +252,11 @@ def get_personal_records_by_exercise(user_id, exercise_id):
     cursor.execute(query, (user_id, exercise_id))
     return cursor.fetchall()
 
+def get_latest_personal_record(user_id, exercise_id):
+    query = "SELECT * FROM personalrecords WHERE user_id = %s AND exercise_id = %s ORDER BY date DESC LIMIT 1"
+    cursor.execute(query, (user_id, exercise_id))
+    return cursor.fetchone()
+
 def update_personal_record(record_id, user_id, exercise_id, weight, date):
     query = "UPDATE personalrecords SET user_id = %s, exercise_id = %s, weight = %s, date = %s WHERE record_id = %s"
     cursor.execute(query, (user_id, exercise_id, weight, date, record_id))
