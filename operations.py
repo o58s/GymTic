@@ -96,7 +96,40 @@ def unlink_exercise_from_muscle(exercise_id, muscle_group_id):
     connection.commit()
     return cursor.rowcount
 
+# Workout CRUD operations
 
+def create_workout(user_id, date, workout_type, duration, notes):
+    query = "INSERT INTO workouts(user_id, date, workout_type, duration, notes) VALUES (%s, %s, %s, %s, %s)"
+    cursor.execute(query, (user_id, date, workout_type, duration, notes))
+    connection.commit()
+    return cursor.lastrowid
+
+def get_workouts():
+    query = "SELECT * FROM workouts"
+    cursor.execute(query)
+    return cursor.fetchall()
+
+def get_workout_by_id(workout_id):
+    query = "SELECT * FROM workouts WHERE workout_id = %s"
+    cursor.execute(query, (workout_id,))
+    return cursor.fetchone()
+
+def get_user_workouts(user_id):
+    query = "SELECT * FROM workouts WHERE user_id = %s ORDER BY date DESC"
+    cursor.execute(query, (user_id,))
+    return cursor.fetchall()
+
+def update_workout(workout_id, user_id, date, workout_type, duration, notes):
+    query = "UPDATE workouts SET user_id = %s, date = %s, workout_type = %s, duration = %s, notes = %s WHERE workout_id = %s"
+    cursor.execute(query, (user_id, date, workout_type, duration, notes, workout_id))
+    connection.commit()
+    return cursor.rowcount
+
+def delete_workout(workout_id):
+    query = "DELETE FROM workouts WHERE workout_id = %s"
+    cursor.execute(query, (workout_id,))
+    connection.commit()
+    return cursor.rowcount
 
 # workout set operations
 def add_workout_set(workout_id, exercise_id, set_number, weight, reps, rest_time):
