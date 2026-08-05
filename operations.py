@@ -166,3 +166,32 @@ def delete_measurement(measurement_id):
     cursor.execute(query, (measurement_id,))
     connection.commit()
     return cursor.rowcount
+
+# Goal operations
+def add_goal(user_id, target_weight, weekly_workout_goal, monthly_workout_goal):
+    query = "INSERT INTO goals(user_id, target_weight, weekly_workout_goal, monthly_workout_goal) VALUES (%s, %s, %s, %s)"
+    cursor.execute(query, (user_id, target_weight, weekly_workout_goal, monthly_workout_goal))
+    connection.commit()
+    return cursor.lastrowid
+
+def get_user_goals(user_id):
+    query = "SELECT * FROM goals WHERE user_id = %s ORDER BY goal_id DESC"
+    cursor.execute(query, (user_id,))
+    return cursor.fetchall()
+
+def get_goal_by_id(goal_id):
+    query = "SELECT * FROM goals WHERE goal_id = %s"
+    cursor.execute(query, (goal_id,))
+    return cursor.fetchone()
+
+def update_goal(goal_id, user_id, target_weight, weekly_workout_goal, monthly_workout_goal):
+    query = "UPDATE goals SET user_id = %s, target_weight = %s, weekly_workout_goal = %s, monthly_workout_goal = %s WHERE goal_id = %s"
+    cursor.execute(query, (user_id, target_weight, weekly_workout_goal, monthly_workout_goal, goal_id))
+    connection.commit()
+    return cursor.rowcount
+
+def delete_goal(goal_id):
+    query = "DELETE FROM goals WHERE goal_id = %s"
+    cursor.execute(query, (goal_id,))
+    connection.commit()
+    return cursor.rowcount
