@@ -115,6 +115,11 @@ def get_workout_set_by_id(set_id):
     cursor.execute(query, (set_id,))
     return cursor.fetchone()
 
+def get_workout_sets_by_workout_id(workout_id):
+    query = "SELECT * FROM workoutsets WHERE workout_id = %s"
+    cursor.execute(query, (workout_id,))
+    return cursor.fetchall()
+
 def update_workout_set(set_id, workout_id, exercise_id, set_number, weight, reps, rest_time):
     query = "UPDATE workoutsets SET workout_id = %s, exercise_id = %s, set_number = %s, weight = %s, reps = %s, rest_time = %s WHERE set_id = %s"
     cursor.execute(query, (workout_id, exercise_id, set_number, weight, reps, rest_time, set_id))
@@ -124,5 +129,40 @@ def update_workout_set(set_id, workout_id, exercise_id, set_number, weight, reps
 def delete_workout_set(set_id):
     query = "DELETE FROM workoutsets WHERE set_id = %s"
     cursor.execute(query, (set_id,))
+    connection.commit()
+    return cursor.rowcount
+
+
+# measurement operations
+def add_measurement(user_id, date, body_weight, bmi):
+    query = "INSERT INTO measurements(user_id, date, body_weight, bmi) VALUES (%s, %s, %s, %s)"
+    cursor.execute(query, (user_id, date, body_weight, bmi))
+    connection.commit()
+    return cursor.lastrowid
+
+def get_user_measurements(user_id):
+    query = "SELECT * FROM measurements WHERE user_id = %s ORDER BY date DESC"
+    cursor.execute(query, (user_id,))
+    return cursor.fetchall()
+
+def get_latest_measurement(user_id):
+    query = "SELECT * FROM measurements WHERE user_id = %s ORDER BY date DESC LIMIT 1"
+    cursor.execute(query, (user_id,))
+    return cursor.fetchone()
+
+def get_measurement_by_id(measurement_id):
+    query = "SELECT * FROM measurements WHERE measurement_id = %s"
+    cursor.execute(query, (measurement_id,))
+    return cursor.fetchone()
+
+def update_measurement(measurement_id, user_id, date, body_weight, bmi):
+    query = "UPDATE measurements SET user_id = %s, date = %s, body_weight = %s, bmi = %s WHERE measurement_id = %s"
+    cursor.execute(query, (user_id, date, body_weight, bmi, measurement_id))
+    connection.commit()
+    return cursor.rowcount
+
+def delete_measurement(measurement_id):
+    query = "DELETE FROM measurements WHERE measurement_id = %s"
+    cursor.execute(query, (measurement_id,))
     connection.commit()
     return cursor.rowcount
