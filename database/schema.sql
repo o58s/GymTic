@@ -1,6 +1,8 @@
 use gymtic;
 CREATE TABLE Users(
 user_id INT AUTO_INCREMENT,
+username VARCHAR(100) UNIQUE,
+password VARCHAR(100),
 name VARCHAR(100),
 age INT,
 height DECIMAL(5,2),
@@ -104,19 +106,3 @@ ON DELETE CASCADE
 ON UPDATE CASCADE
 );
 
-CREATE TABLE WorkoutSets (
-    set_id INT AUTO_INCREMENT,
-    workout_id INT,
-    exercise_id INT,
-    set_number INT,
-    weight DECIMAL(6,2),
-    reps INT,
-    rest_time INT,
-    PRIMARY KEY (set_id),
-    FOREIGN KEY (workout_id) REFERENCES Workouts(workout_id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    FOREIGN KEY (exercise_id) REFERENCES Exercises(exercise_id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
-);

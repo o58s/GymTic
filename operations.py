@@ -34,9 +34,9 @@ def delete_exercise(exercise_id):
 
 
 # User Operations
-def add_user(name, age, height, weight, goal):
-    query = "INSERT INTO users(name, age, height, weight, goal) VALUES (%s, %s, %s, %s, %s)"
-    cursor.execute(query, (name, age, height, weight, goal))
+def add_user(username, password, name, age, height, weight, goal):
+    query = "INSERT INTO users(username, password, name, age, height, weight, goal) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    cursor.execute(query, (username, password, name, age, height, weight, goal))
     connection.commit()
     return cursor.lastrowid
 
