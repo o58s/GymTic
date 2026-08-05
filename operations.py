@@ -1,7 +1,7 @@
 from db_connection import connection, cursor
 
 
-# Exercise CRUD operations
+# Exercise Operations
 def add_exercise(exercise_name, equipment, difficulty):
     query = "INSERT INTO exercises (exercise_name, equipment, difficulty) VALUES (%s, %s, %s)"
     cursor.execute(query, (exercise_name, equipment, difficulty))
@@ -33,7 +33,7 @@ def delete_exercise(exercise_id):
     return cursor.rowcount
 
 
-# User CRUD operations
+# User Operations
 def add_user(age, height, weight, goal):
     query = "INSERT INTO users(age, height, weight, goal) VALUES (%s, %s, %s, %s)"
     cursor.execute(query, (age, height, weight, goal))
@@ -62,7 +62,7 @@ def delete_user(user_id):
     connection.commit()
     return cursor.rowcount
 
-# Muscle Group operations
+# Muscle Group Operations
 def get_muscle_groups():
     query = "SELECT * FROM musclegroups"
     cursor.execute(query)
@@ -73,7 +73,7 @@ def get_muscle_group_by_id(muscle_group_id):
     cursor.execute(query, (muscle_group_id,))
     return cursor.fetchone()
 
-#Exercise-Muscle operations
+#Exercise-Muscle Operations
 def link_exercise_to_muscle(exercise_id, muscle_group_id):
     query = "INSERT INTO exercisemuscles (exercise_id, muscle_group_id) VALUES (%s, %s)"
     cursor.execute(query, (exercise_id, muscle_group_id))
@@ -96,7 +96,7 @@ def unlink_exercise_from_muscle(exercise_id, muscle_group_id):
     connection.commit()
     return cursor.rowcount
 
-# Workout CRUD operations
+# Workout Operations
 
 def create_workout(user_id, date, workout_type, duration, notes):
     query = "INSERT INTO workouts(user_id, date, workout_type, duration, notes) VALUES (%s, %s, %s, %s, %s)"
@@ -131,7 +131,7 @@ def delete_workout(workout_id):
     connection.commit()
     return cursor.rowcount
 
-# workout set operations
+# Workout Set Operations
 def add_workout_set(workout_id, exercise_id, set_number, weight, reps, rest_time):
     query = "INSERT INTO workoutsets (workout_id, exercise_id, set_number, weight, reps, rest_time) VALUES (%s, %s, %s, %s, %s, %s)"
     cursor.execute(query, (workout_id, exercise_id, set_number, weight, reps, rest_time))
@@ -149,7 +149,7 @@ def get_workout_set_by_id(set_id):
     return cursor.fetchone()
 
 def get_workout_sets_by_workout_id(workout_id):
-    query = "SELECT * FROM workoutsets WHERE workout_id = %s"
+    query = "SELECT * FROM workoutsets WHERE workout_id = %s ORDER BY set_number"
     cursor.execute(query, (workout_id,))
     return cursor.fetchall()
 
@@ -166,7 +166,7 @@ def delete_workout_set(set_id):
     return cursor.rowcount
 
 
-# measurement operations
+# Measurement Operations
 def add_measurement(user_id, date, body_weight, bmi):
     query = "INSERT INTO measurements(user_id, date, body_weight, bmi) VALUES (%s, %s, %s, %s)"
     cursor.execute(query, (user_id, date, body_weight, bmi))
@@ -200,7 +200,7 @@ def delete_measurement(measurement_id):
     connection.commit()
     return cursor.rowcount
 
-# Goal operations
+# Goal Operations
 def add_goal(user_id, target_weight, weekly_workout_goal, monthly_workout_goal):
     query = "INSERT INTO goals(user_id, target_weight, weekly_workout_goal, monthly_workout_goal) VALUES (%s, %s, %s, %s)"
     cursor.execute(query, (user_id, target_weight, weekly_workout_goal, monthly_workout_goal))
@@ -229,7 +229,7 @@ def delete_goal(goal_id):
     connection.commit()
     return cursor.rowcount
 
-# personal record operations
+# Personal Record Operations
 
 def add_personal_record(user_id, exercise_id, weight, date):
     query = "INSERT INTO personalrecords(user_id, exercise_id, weight, date) VALUES (%s, %s, %s, %s)"
