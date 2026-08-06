@@ -48,7 +48,7 @@ if option == "Login":
 
         if success:
             st.success(message)
-            sleep(1)
+            sleep(0.5)
             st.switch_page("pages/1_Dashboard.py")
         else:
             st.error(message)
@@ -110,7 +110,7 @@ else:
 
         if success:
             st.success(message)
-            sleep(1)
+            sleep(0.5)
             st.switch_page("pages/1_Dashboard.py")
 
         else:
