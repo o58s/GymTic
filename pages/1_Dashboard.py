@@ -1,6 +1,6 @@
 import streamlit as st
 
-from operations import get_user_by_id, get_user_workouts, get_latest_measurement, get_user_goals, get_personal_records
+from operations import get_user_by_id, get_user_workouts, get_latest_measurement, get_user_goals, get_personal_records, get_weekly_streak
 
 from ui.styles import load_css
 from ui.components import welcome_card, metric_card, section
@@ -43,10 +43,12 @@ with col2:
 
 col3, col4 = st.columns(2)
 
+streak = get_weekly_streak(user_id)
+
 with col3:
     metric_card(
-        "Current Goal",
-        user["goal"]
+        "🔥 Week Streak",
+        f"{streak} weeks"
     )
 
 with col4:

@@ -1,4 +1,5 @@
 from db_connection import connection, cursor
+from datetime import date, timedelta
 
 
 # Exercise Operations
@@ -283,3 +284,58 @@ def delete_personal_record(record_id):
     cursor.execute(query, (record_id,))
     connection.commit()
     return cursor.rowcount
+
+#Weekly streak
+
+from datetime import date, timedelta
+
+
+def get_weekly_streak(user_id):
+
+    query = "SELECT date FROM workouts WHERE user_id = %s ORDER BY date DESC"
+    
+
+    cursor.execute(query, (user_id,))
+    workouts = cursor.fetchall()
+
+    if not workouts:
+        return 0
+
+
+    workout_dates = [
+        workout["date"]
+        for workout in workouts
+    ]
+
+    current_week = date.today().isocalendar().week
+    current_year = date.today().year
+
+
+    streak = 0
+    week = current_week
+    year = current_year
+
+
+    for workout_date in workout_dates:
+
+        workout_week = workout_date.isocalendar().week
+        workout_year = workout_date.year
+
+
+        if workout_week == week and workout_year == year:
+
+            streak += 1
+
+            week -= 1
+
+            if week == 0:
+                week = 52
+                year -= 1
+
+        else:
+            break
+
+
+    return streak
+
+     
