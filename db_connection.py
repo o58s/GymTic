@@ -15,7 +15,7 @@ try:
 
     if connection.is_connected():
         print('Connected to MySQL database')
-        cursor = connection.cursor()
+        cursor = connection.cursor(dictionary=True)
         cursor.execute('SELECT VERSION();')
         db_version = cursor.fetchone()
         

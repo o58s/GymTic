@@ -1,17 +1,21 @@
 import streamlit as st
-from auth import Create_account, login
+from auth import create_account, login
+from time import sleep
 
 st.set_page_config(
     page_title="GymTic",
     layout="centered"
 )
 
-if "user_id" in st.session_state:
-    st.success(f"Welcome back, {st.session_state.name}!")
-    st.write("You are already logged in.")
-    st.stop()
 
-st.title("Gymtic")
+#Check if already logged in
+if "user_id" in st.session_state:
+
+    st.switch_page("pages/1_Dashboard.py")
+
+
+st.title("GymTic")
+
 
 option = st.selectbox(
     "Select an option",
@@ -21,25 +25,43 @@ option = st.selectbox(
     ]
 )
 
-if option == "login":
+
+#Login Section
+
+if option == "Login":
+
     st.subheader("Login")
 
     username = st.text_input("Username")
-    password = st.text_input("Password", type="password")
 
-    success, message = login(username, password)
+    password = st.text_input(
+        "Password",
+        type="password"
+    )
 
-    if success:
-        st.success(message)
-        st.rerun()
-    else:
-        st.error(message)
+    if st.button("Login"):
+
+        success, message = login(
+            username,
+            password
+        )
+
+        if success:
+            st.success(message)
+            sleep(1)
+            st.switch_page("pages/1_Dashboard.py")
+        else:
+            st.error(message)
+
+
+# Create Account Section
 
 else:
 
     st.subheader("Create Account")
 
     username = st.text_input("Username")
+
     password = st.text_input(
         "Password",
         type="password"
@@ -74,10 +96,9 @@ else:
         ]
     )
 
-
     if st.button("Create Account"):
 
-        success, result = create_account(
+        success, message = create_account(
             username,
             password,
             name,
@@ -87,11 +108,10 @@ else:
             goal
         )
 
-
         if success:
-            st.success(
-                f"Account created! User ID: {result}"
-            )
+            st.success(message)
+            sleep(1)
+            st.switch_page("pages/1_Dashboard.py")
 
         else:
-            st.error(result)
+            st.error(message)
