@@ -113,7 +113,7 @@ def load_css():
     }
 
     .chart-description {
-        color: #CBD5E1 !important;
+        color: #FACC15 !important;
         font-size: 14px;
         margin-top: -8px;
         margin-bottom: 12px;

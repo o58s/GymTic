@@ -20,7 +20,15 @@ def workout_frequency_chart(data):
 
     fig.update_layout(
         height = 350,
-        template = "plotly_white"
+        template = "plotly_white",  
+        paper_bgcolor= 'rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        font=dict(color='#E2E8F0'),
+        xaxis=dict(color='#E2E8F0', gridcolor='#252A2F'),
+        yaxis=dict(color='#E2E8F0', gridcolor='#252A2F'),
+    )
+    fig.update_traces(
+        marker_color='#FACC15'     
     )
 
     st.plotly_chart(
@@ -48,7 +56,15 @@ def weight_progress_chart(data):
 
     fig.update_layout(
         height=350,
-        template="plotly_white"
+        template="plotly_white",
+        paper_bgcolor= 'rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        font=dict(color='#E2E8F0'),
+        xaxis=dict(color='#E2E8F0', gridcolor='#252A2F'),
+        yaxis=dict(color='#E2E8F0', gridcolor='#252A2F'),
+    )
+    fig.update_traces(
+        line_color='#FACC15',  
     )
 
     st.plotly_chart(
@@ -72,8 +88,14 @@ def muscle_distribution_chart(data):
 
     fig.update_layout(
         height=350,
-        template="plotly_white"
+        template="plotly_white",
+        paper_bgcolor= 'rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        font=dict(color='#E2E8F0'),
+        xaxis=dict(color='#E2E8F0', gridcolor='#252A2F'),
+        yaxis=dict(color='#E2E8F0', gridcolor='#252A2F'),
     )
+
 
     st.plotly_chart(
         fig,
@@ -101,9 +123,16 @@ def training_volume_chart(data):
 
     fig.update_layout(
         height=350,
-        template="plotly_white"
+        template="plotly_white",
+        paper_bgcolor= 'rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        font=dict(color='#E2E8F0'),
+        xaxis=dict(color='#E2E8F0', gridcolor='#252A2F'),
+        yaxis=dict(color='#E2E8F0', gridcolor='#252A2F'),
     )
-
+    fig.update_traces(
+        line_color='#FACC15',   
+    )
     st.plotly_chart(
         fig,
         use_container_width=True
@@ -127,9 +156,13 @@ def muscle_distribution_chart(data):
 
     fig.update_layout(
         height=500,
-        template="plotly_white"
+        template="plotly_white",
+        paper_bgcolor= 'rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        font=dict(color='#E2E8F0'),
+        xaxis=dict(color='#E2E8F0', gridcolor='#252A2F'),
+        yaxis=dict(color='#E2E8F0', gridcolor='#252A2F'),
     )
-
 
     st.plotly_chart(
         fig,

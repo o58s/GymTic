@@ -78,7 +78,7 @@ col1, col2 = st.columns([4, 1])
 
 with col1:
     st.markdown(
-        f"## Good evening, {user['name']} 👋"
+        f"## Welcome, {user['name']} 👋"
     )
 
     st.caption(
