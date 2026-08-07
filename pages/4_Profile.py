@@ -58,7 +58,8 @@ st.subheader("Logout")
 if st.button("Logout"):
     logout()
     st.success("Logged out successfully!")
-    st.rerun()
+    sleep(0.5)
+    st.switch_page("app.py")
 
 st.divider()
 # Delete Account Section
@@ -70,4 +71,5 @@ if confirmation:
         delete_user(user_id)
         logout()
         st.success("Account deleted successfully!")
-        st.rerun()
+        sleep(0.5)
+        st.switch_page("app.py")
