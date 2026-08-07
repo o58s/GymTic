@@ -39,3 +39,7 @@ def section(title):
         """,
         unsafe_allow_html=True
     )
+
+def chart_description(text):
+
+    st.info(text)

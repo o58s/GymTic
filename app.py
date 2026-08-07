@@ -4,7 +4,7 @@ from time import sleep
 
 st.set_page_config(
     page_title="GymTic",
-    layout="centered"
+    layout="wide"
 )
 
 

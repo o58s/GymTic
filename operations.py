@@ -89,6 +89,36 @@ def get_muscle_group_by_id(muscle_group_id):
     cursor.execute(query, (muscle_group_id,))
     return cursor.fetchone()
 
+def get_muscle_distribution(user_id):
+
+    query = """
+    SELECT 
+        mg.muscle_group_name,
+        COUNT(*) AS count
+
+    FROM workoutsets ws
+
+    JOIN workouts w
+        ON ws.workout_id = w.workout_id
+
+    JOIN exercises e
+        ON ws.exercise_id = e.exercise_id
+
+    JOIN exercisemuscles em
+        ON e.exercise_id = em.exercise_id
+
+    JOIN musclegroups mg
+        ON em.muscle_group_id = mg.muscle_group_id
+
+    WHERE w.user_id = %s
+
+    GROUP BY mg.muscle_group_name
+    """
+
+    cursor.execute(query,(user_id,))
+
+    return cursor.fetchall()
+
 #Exercise-Muscle Operations
 def link_exercise_to_muscle(exercise_id, muscle_group_id):
     query = "INSERT INTO exercisemuscles (exercise_id, muscle_group_id) VALUES (%s, %s)"
@@ -164,6 +194,19 @@ def get_workout_set_by_id(set_id):
     cursor.execute(query, (set_id,))
     return cursor.fetchone()
 
+def get_workout_sets_by_user(user_id):
+
+    query = """
+    SELECT ws.*
+    FROM workoutsets ws
+    JOIN workouts w
+    ON ws.workout_id = w.workout_id
+    WHERE w.user_id = %s
+    """
+
+    cursor.execute(query,(user_id,))
+    return cursor.fetchall()
+
 def get_workout_sets_by_workout_id(workout_id):
     query = "SELECT * FROM workoutsets WHERE workout_id = %s ORDER BY set_number"
     cursor.execute(query, (workout_id,))
@@ -192,6 +235,13 @@ def add_measurement(user_id, date, body_weight, bmi):
 def get_user_measurements(user_id):
     query = "SELECT * FROM measurements WHERE user_id = %s ORDER BY date DESC"
     cursor.execute(query, (user_id,))
+    return cursor.fetchall()
+
+def get_user_measurements(user_id):
+
+    query = "SELECT * FROM measurements WHERE user_id = %s ORDER BY date"
+
+    cursor.execute(query,(user_id,))
     return cursor.fetchall()
 
 def get_latest_measurement(user_id):

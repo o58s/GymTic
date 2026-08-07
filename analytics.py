@@ -26,34 +26,34 @@ def weight_progress(measurements):
 
 
 def muscle_distribution(data):
+
     if not data:
         return None
+
     df = pd.DataFrame(data)
 
-    result =(
-        df.groupby("muscle_group_name")
-        .size()
-        .reset_index(name= "count")
-    )
-    return result
+    return df
 
 def training_volume(sets):
-    if not set:
+
+    if not sets:
         return None
 
     df = pd.DataFrame(sets)
 
-    df["volume"]= (
-        df["weights"]
-        * 
-        df["reps"]
+    df["volume"] = (
+        df["weight"].astype(float)
+        *
+        df["reps"].astype(int)
     )
 
     result = (
-        df.groupby("workout_id")
-        ["volume"]
+        df.groupby("workout_id")["volume"]
         .sum()
-        .reset_index
+        .reset_index()
     )
+
     return result
+
+
     
