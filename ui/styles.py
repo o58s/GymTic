@@ -148,7 +148,7 @@ def load_css():
     }
 
     [data-testid="stText"] {
-        color: #E2E8F0 !important;
+        color: #FFFFFF !important;
     }
 
     section[data-testid="stSidebar"] {
