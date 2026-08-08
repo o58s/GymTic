@@ -18,6 +18,23 @@ def workout_frequency_chart(data):
         }
     )
 
+    fig.add_bar(
+        x=data["week"],
+        y=data["workouts"],
+        marker_color="rgba(250,204,21,0.12)",
+        width=0.55,
+        hoverinfo="skip",
+        showlegend=False
+    )
+
+    fig.update_traces(
+        marker_color="#FACC15",
+        marker_line_color="#FACC15",
+        marker_line_width=1,
+        width=0.30,
+        selector=dict(type="bar")
+    )
+
     fig.update_layout(
         height=350,
         template="plotly_white",
@@ -36,11 +53,8 @@ def workout_frequency_chart(data):
             gridcolor="#252A2F",
             tickfont=dict(color="#FFFFFF"),
             title_font=dict(color="#FFFFFF")
-        )
-    )
-
-    fig.update_traces(
-        marker_color="#FACC15"
+        ),
+        bargap=0.35
     )
 
     st.plotly_chart(

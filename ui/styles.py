@@ -15,13 +15,6 @@ def load_css():
         color: #FACC15 !important;
     }
 
-    p,
-    span,
-    label,
-    div {
-        color: #E2E8F0;
-    }
-
     .metric-card {
         background: #121518;
         border: 1px solid #252A2F;
@@ -153,6 +146,83 @@ def load_css():
 
     section[data-testid="stSidebar"] {
         background: #101316;
+    }
+
+    div[data-testid="stTextInput"] label,
+    div[data-testid="stNumberInput"] label,
+    div[data-testid="stSelectbox"] label {
+        color: #FACC15 !important;
+    }
+
+    div[data-testid="stTextInput"] input,
+    div[data-testid="stNumberInput"] input {
+        background-color: #121518 !important;
+        color: #F8FAFC !important;
+        border: 1px solid #252A2F !important;
+        border-radius: 8px !important;
+    }
+
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+        background-color: #121518 !important;
+        color: #F8FAFC !important;
+        border-color: #252A2F !important;
+    }
+
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] span {
+        color: #F8FAFC !important;
+    }
+
+    div[data-baseweb="popover"] {
+        background-color: #121518 !important;
+    }
+
+    ul[data-baseweb="menu"] {
+        background-color: #121518 !important;
+        border: 1px solid #252A2F !important;
+    }
+
+    li[role="option"] {
+        background-color: #121518 !important;
+        color: #F8FAFC !important;
+    }
+
+    li[role="option"]:hover {
+        background-color: #1C2126 !important;
+        color: #FACC15 !important;
+    }
+
+    li[role="option"][aria-selected="true"] {
+        background-color: #211F12 !important;
+        color: #FACC15 !important;
+    }
+
+    .stButton > button {
+        background-color: #FACC15 !important;
+        color: #0B0D0F !important;
+        border: none !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
+        min-height: 45px;
+    }
+
+    .stButton > button p,
+    .stButton > button span,
+    .stButton > button div {
+        color: #0B0D0F !important;
+        font-weight: 700 !important;
+    }
+
+    .stButton > button:hover {
+        background-color: #EAB308 !important;
+        color: #0B0D0F !important;
+    }
+
+    div[data-testid="stCheckbox"] label {
+        color: #CBD5E1 !important;
+    }
+
+    div[data-testid="stCheckbox"] label span {
+        color: #CBD5E1 !important;
     }
 
     </style>

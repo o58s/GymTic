@@ -7,7 +7,6 @@ from ui.components import section, metric_card
 
 st.set_page_config(
     page_title="GymTic Profile",
-    page_icon="👤",
     layout="wide"
 )
 
@@ -26,11 +25,10 @@ if user is None:
     st.stop()
 
 st.markdown(
-    f"""
+    """
     <div class="dashboard-title">
         Your Profile
     </div>
-
     <div class="dashboard-subtitle">
         Manage your personal information and account settings.
     </div>
@@ -44,7 +42,7 @@ col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     metric_card(
-        "Name",
+        "NAME",
         user["name"]
     )
 
@@ -147,22 +145,15 @@ section("Account")
 with st.container(border=True):
 
     st.markdown(
-        f"""
-        <div style="margin-bottom: 15px;">
-            <div style="color:#FACC15; font-size:13px; font-weight:600;">
-                ACCOUNT
-            </div>
+        "**ACCOUNT**"
+    )
 
-            <div style="color:#F8FAFC; font-size:20px; font-weight:600; margin-top:5px;">
-                {user["username"]}
-            </div>
+    st.write(
+        f"Username: **{user['username']}**"
+    )
 
-            <div style="color:#CBD5E1; font-size:14px; margin-top:5px;">
-                Your GymTic account
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
+    st.caption(
+        "This is your GymTic account."
     )
 
     if st.button(
@@ -183,18 +174,11 @@ section("Danger Zone")
 with st.container(border=True):
 
     st.markdown(
-        """
-        <div style="margin-bottom:15px;">
-            <div style="color:#FACC15; font-size:13px; font-weight:600;">
-                DELETE ACCOUNT
-            </div>
+        "**DELETE ACCOUNT**"
+    )
 
-            <div style="color:#CBD5E1; font-size:14px; margin-top:5px;">
-                Permanently delete your GymTic account and all associated data.
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
+    st.caption(
+        "Permanently delete your GymTic account and all associated data."
     )
 
     confirmation = st.checkbox(
